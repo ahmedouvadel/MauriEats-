@@ -9,6 +9,7 @@ import lombok.*;
 public class ClientDTO {
     private Long id;
     private String name;
+    private int number;
     private String email;
     private Role role;
 }

@@ -2,6 +2,7 @@ package com.example.maurieats.Services.Service;
 
 
 import com.example.maurieats.DAO.Entity.Administrator;
+import com.example.maurieats.DAO.Enum.Role;
 import com.example.maurieats.DAO.Repository.AdministratorRepository;
 import com.example.maurieats.Dto.AdministratorDTO;
 import com.example.maurieats.Mapper.AdministratorMapper;
@@ -34,7 +35,13 @@ public class AdministratorService implements IAdministrator {
     }
 
     public AdministratorDTO createAdministrator(AdministratorDTO administratorDTO) {
+        if (administratorDTO.getRole() != null && administratorDTO.getRole() != Role.ADMINISTRATOR) {
+            throw new IllegalArgumentException("Cannot assign a role other than ADMINISTRATOR to a new client.");
+        }
         Administrator administrator = administratorMapper.toEntity(administratorDTO);
+
+        administrator.setRole(Role.ADMINISTRATOR);
+
         Administrator savedAdministrator = administratorRepository.save(administrator);
         return administratorMapper.toDTO(savedAdministrator);
     }

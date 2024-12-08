@@ -2,6 +2,7 @@ package com.example.maurieats.Services.Service;
 
 
 import com.example.maurieats.DAO.Entity.Client;
+import com.example.maurieats.DAO.Enum.Role;
 import com.example.maurieats.DAO.Repository.ClientRepository;
 import com.example.maurieats.Dto.ClientDTO;
 import com.example.maurieats.Mapper.ClientMapper;
@@ -36,10 +37,23 @@ public class ClientService implements IClient {
     }
 
     public ClientDTO createClient(ClientDTO clientDTO) {
+        if (clientDTO.getRole() != null && clientDTO.getRole() != Role.CLIENT) {
+            throw new IllegalArgumentException("Cannot assign a role other than CLIENT to a new client.");
+        }
+
+        // Map DTO to Entity
         Client client = clientMapper.toEntity(clientDTO);
+
+        // Assign Role.CLIENT
+        client.setRole(Role.CLIENT);
+
+        // Save Client
         Client savedClient = clientRepository.save(client);
+
+        // Map Entity to DTO and return
         return clientMapper.toDTO(savedClient);
     }
+
 
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);

@@ -21,6 +21,9 @@ public class Client {
     private String name;
 
     @Column(unique = true, nullable = false)
+    private int number;
+
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)

@@ -4,7 +4,7 @@ import com.example.maurieats.Dto.DeliveryPersonDTO;
 
 import java.util.List;
 
-public interface IDeliverPerson {
+public interface IDeliveryPerson {
     List<DeliveryPersonDTO> getAllDeliveryPersons();
     DeliveryPersonDTO getDeliveryPersonById(Long id);
     DeliveryPersonDTO createDeliveryPerson(DeliveryPersonDTO deliveryPersonDTO);
