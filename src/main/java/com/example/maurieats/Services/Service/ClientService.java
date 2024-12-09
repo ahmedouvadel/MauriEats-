@@ -19,23 +19,22 @@ public class ClientService implements IClient {
 
 
     private final ClientRepository clientRepository;
-
-
     private final ClientMapper clientMapper;
 
+    @Override
     public List<ClientDTO> getAllClients() {
         return clientRepository.findAll()
                 .stream()
                 .map(clientMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
+    @Override
     public ClientDTO getClientById(Long id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
         return clientMapper.toDTO(client);
     }
-
+    @Override
     public ClientDTO createClient(ClientDTO clientDTO) {
         if (clientDTO.getRole() != null && clientDTO.getRole() != Role.CLIENT) {
             throw new IllegalArgumentException("Cannot assign a role other than CLIENT to a new client.");
@@ -53,8 +52,7 @@ public class ClientService implements IClient {
         // Map Entity to DTO and return
         return clientMapper.toDTO(savedClient);
     }
-
-
+    @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }

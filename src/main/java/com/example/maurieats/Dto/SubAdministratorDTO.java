@@ -14,6 +14,7 @@ public class SubAdministratorDTO {
     private Long id;
     private String name;
     private String email;
+    private int number;
     private Role role;
     private Long administratorId; // Reference to Administrator
 }

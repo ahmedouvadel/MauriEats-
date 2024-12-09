@@ -17,26 +17,26 @@ public class MenuItemService implements IMenuItem {
 
     private final MenuItemRepository menuItemRepository;
     private final MenuItemMapper menuItemMapper;
-
+    @Override
     public List<MenuItemDTO> getAllMenuItems() {
         return menuItemRepository.findAll()
                 .stream()
                 .map(menuItemMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
+    @Override
     public MenuItemDTO getMenuItemById(Long id) {
         MenuItem menuItem = menuItemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("MenuItem not found"));
         return menuItemMapper.toDTO(menuItem);
     }
-
+    @Override
     public MenuItemDTO createMenuItem(MenuItemDTO menuItemDTO) {
         MenuItem menuItem = menuItemMapper.toEntity(menuItemDTO);
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         return menuItemMapper.toDTO(savedMenuItem);
     }
-
+    @Override
     public void deleteMenuItem(Long id) {
         menuItemRepository.deleteById(id);
     }

@@ -1,19 +1,21 @@
 package com.example.maurieats.Dto;
 
-import com.example.maurieats.DAO.Enum.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdministratorDTO {
+public class StoryDTO {
     private Long id;
-    private String name;
-    private String email;
-    private int number;
-    private Role role;
+    private String imageUrl;
+    private Double price;
+    private String description;
+    private LocalDateTime createdAt;
 }

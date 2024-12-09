@@ -20,19 +20,20 @@ public class DeliveryPersonService implements IDeliveryPerson {
 
     private final DeliveryPersonMapper deliveryPersonMapper;
 
+    @Override
     public List<DeliveryPersonDTO> getAllDeliveryPersons() {
         return deliveryPersonRepository.findAll()
                 .stream()
                 .map(deliveryPersonMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
+    @Override
     public DeliveryPersonDTO getDeliveryPersonById(Long id) {
         DeliveryPerson deliveryPerson = deliveryPersonRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DeliveryPerson not found"));
         return deliveryPersonMapper.toDTO(deliveryPerson);
     }
-
+    @Override
     public DeliveryPersonDTO createDeliveryPerson(DeliveryPersonDTO deliveryPersonDTO) {
         if (deliveryPersonDTO.getRole() != null && deliveryPersonDTO.getRole() != Role.DELIVERY_PERSON) {
             throw new IllegalArgumentException("Cannot assign a role other than DELIVERY_PERSON to a new client.");
@@ -44,7 +45,7 @@ public class DeliveryPersonService implements IDeliveryPerson {
         DeliveryPerson savedDeliveryPerson = deliveryPersonRepository.save(deliveryPerson);
         return deliveryPersonMapper.toDTO(savedDeliveryPerson);
     }
-
+    @Override
     public void deleteDeliveryPerson(Long id) {
         deliveryPersonRepository.deleteById(id);
     }

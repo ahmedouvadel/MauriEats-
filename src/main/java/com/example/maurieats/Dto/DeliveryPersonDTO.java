@@ -13,6 +13,7 @@ import lombok.Setter;
 public class DeliveryPersonDTO {
     private Long id;
     private String name;
+    private int number;
     private String email;
     private Role role;
     private String vehicleInfo;

@@ -9,4 +9,6 @@ public interface IVendorPage {
     VendorPageDTO getVendorPageById(Long id);
     VendorPageDTO createVendorPage(VendorPageDTO vendorPageDTO);
     void deleteVendorPage(Long id);
+    List<VendorPageDTO> getUnacceptedVendorPages();
+
 }

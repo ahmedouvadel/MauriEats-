@@ -35,4 +35,9 @@ public class VendorPageController {
         vendorPageService.deleteVendorPage(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/unaccepted")
+    public ResponseEntity<List<VendorPageDTO>> getUnacceptedVendorPages() {
+        return ResponseEntity.ok(vendorPageService.getUnacceptedVendorPages());
+    }
 }

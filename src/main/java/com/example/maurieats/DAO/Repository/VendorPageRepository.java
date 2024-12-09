@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface VendorPageRepository extends JpaRepository<VendorPage, Long> {
     List<VendorPage> findByOwnerId(Long ownerId); // Retrieve vendor pages by owner (Client)
+    List<VendorPage> findByIsAcceptedFalse();
 }

@@ -1,5 +1,7 @@
 package com.example.maurieats.DAO.Entity;
+
 import com.example.maurieats.DAO.Enum.PageType;
+import com.example.maurieats.DAO.Enum.PageStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,18 @@ public class VendorPage {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column(nullable = false)
+    private Boolean isAccepted = false;
+
+    @Enumerated(EnumType.STRING)
+    private PageStatus status = PageStatus.CLOSED;
+
+    @Column(nullable = true)
+    private String profileImage; // URL for profile image
+
+    @Column(nullable = true)
+    private String coverImage; // URL for cover image
+
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private Client owner;
@@ -38,4 +52,10 @@ public class VendorPage {
 
     @OneToMany(mappedBy = "vendorPage", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "vendorPage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Story> stories;
+
+
+
 }

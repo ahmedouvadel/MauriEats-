@@ -16,10 +16,16 @@ public class SubAdministrator {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
 
     @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(unique = true, nullable = false)
+    private int number;
 
     @Column(nullable = false)
     private String password;

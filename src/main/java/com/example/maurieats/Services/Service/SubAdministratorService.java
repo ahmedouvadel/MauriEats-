@@ -19,19 +19,20 @@ public class SubAdministratorService implements ISubAdministrator {
     private final SubAdministratorRepository subAdministratorRepository;
     private final SubAdministratorMapper subAdministratorMapper;
 
+    @Override
     public List<SubAdministratorDTO> getAllSubAdministrators() {
         return subAdministratorRepository.findAll()
                 .stream()
                 .map(subAdministratorMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
+    @Override
     public SubAdministratorDTO getSubAdministratorById(Long id) {
         SubAdministrator subAdministrator = subAdministratorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("SubAdministrator not found"));
         return subAdministratorMapper.toDTO(subAdministrator);
     }
-
+    @Override
     public SubAdministratorDTO createSubAdministrator(SubAdministratorDTO subAdministratorDTO) {
         if (subAdministratorDTO.getRole() != null && subAdministratorDTO.getRole() != Role.SUB_ADMINISTRATOR) {
             throw new IllegalArgumentException("Cannot assign a role other than SUB_ADMINISTRATOR to a new client.");
@@ -43,7 +44,7 @@ public class SubAdministratorService implements ISubAdministrator {
         SubAdministrator savedSubAdministrator = subAdministratorRepository.save(subAdministrator);
         return subAdministratorMapper.toDTO(savedSubAdministrator);
     }
-
+    @Override
     public void deleteSubAdministrator(Long id) {
         subAdministratorRepository.deleteById(id);
     }
