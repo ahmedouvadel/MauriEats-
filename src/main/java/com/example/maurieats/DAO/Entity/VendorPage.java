@@ -51,7 +51,7 @@ public class VendorPage {
     private List<MenuItem> menuItems;
 
     @OneToMany(mappedBy = "vendorPage", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderClient> orders;
 
     @OneToMany(mappedBy = "vendorPage", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Story> stories;

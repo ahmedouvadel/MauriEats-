@@ -42,5 +42,5 @@ public class DeliveryPerson {
     private Boolean availability = true;
 
     @OneToMany(mappedBy = "deliveryPerson", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderClient> orders;
 }

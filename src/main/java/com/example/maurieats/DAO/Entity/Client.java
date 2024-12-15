@@ -41,5 +41,5 @@ public class Client {
     private List<VendorPage> vendorPages;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderClient> orders;
 }

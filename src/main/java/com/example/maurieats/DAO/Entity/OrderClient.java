@@ -1,4 +1,5 @@
 package com.example.maurieats.DAO.Entity;
+
 import com.example.maurieats.DAO.Enum.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,8 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Order {
-
+public class OrderClient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +35,7 @@ public class Order {
     @ManyToMany
     @JoinTable(
             name = "order_items",
-            joinColumns = @JoinColumn(name = "order_id"),
+            joinColumns = @JoinColumn(name = "order_client_id"),
             inverseJoinColumns = @JoinColumn(name = "menu_item_id")
     )
     private List<MenuItem> items;

@@ -1,6 +1,6 @@
 package com.example.maurieats.Services.Service;
 
-import com.example.maurieats.DAO.Entity.Order;
+import com.example.maurieats.DAO.Entity.OrderClient;
 import com.example.maurieats.DAO.Repository.OrderRepository;
 import com.example.maurieats.Dto.OrderDTO;
 import com.example.maurieats.Mapper.OrderMapper;
@@ -27,14 +27,14 @@ public class OrderService implements IOrder {
     }
     @Override
     public OrderDTO getOrderById(Long id) {
-        Order order = orderRepository.findById(id)
+        OrderClient order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
         return orderMapper.toDTO(order);
     }
     @Override
     public OrderDTO createOrder(OrderDTO orderDTO) {
-        Order order = orderMapper.toEntity(orderDTO);
-        Order savedOrder = orderRepository.save(order);
+        OrderClient order = orderMapper.toEntity(orderDTO);
+        OrderClient savedOrder = orderRepository.save(order);
         return orderMapper.toDTO(savedOrder);
     }
     @Override

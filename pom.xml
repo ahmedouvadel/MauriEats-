@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<!--<optional>true</optional>-->
 		</dependency>
 
 		<!-- MapStruct -->
@@ -74,7 +74,7 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -101,6 +101,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 </project>
